@@ -40,3 +40,7 @@ Delvin Dsouza
 ![image](https://github.com/dxdelvin/breakoutgame/assets/61946291/5f93d24a-0509-45b8-8ee7-d0dbfe12a1b6)
 
 
+## Current Issue for Contribution:
+- Game is Laggy and it stuck at some Point of View
+
+
