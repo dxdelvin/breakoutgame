@@ -91,7 +91,7 @@ def check_border_collision():
         else:
             ball.setheading(random.randint(91, 150))
 
-    if ball.ycor() < -screen_height:
+    if ball.ycor() < -screen_height or score==25:
         write_game_over()
         turtle.tracer(0,0)
 
