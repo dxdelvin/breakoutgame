@@ -1,5 +1,6 @@
 import random
 import turtle
+import  math
 # UI #
 # Dash
 # Colorful boxes
@@ -35,10 +36,16 @@ Dash.speed(1)
 
 
 def right_move():
+    turtle.tracer(0, 0)
     Dash.forward(speed*30)
+    turtle.tracer(1, 1)
+
 
 def left_move():
+    turtle.tracer(0, 0)
     Dash.backward(speed*30)
+    turtle.tracer(1, 1)
+
 
 
 
@@ -73,27 +80,57 @@ create_box(color,-350,150)
 turtle.tracer(1,1)
 
 ball = Turtle()
+ball.penup()
 ball.shape("circle")
 ball.color("white")
 ball.right(90)
 
+
+
+
+def check_border_collision():
+    screen_width = s.window_width() // 2 - 50
+    screen_height = s.window_height() // 2- 50
+    if Dash.ycor() -50 < ball.ycor() < Dash.ycor() + 50:
+        if Dash.ycor() - 50 < ball.ycor():
+            ball.setheading(random.randint(89,150))
+        else:
+            ball.setheading(random.randint(45,90))
+
+    if ball.ycor() > screen_height or ball.ycor() < -screen_height:
+        ball.setheading(360-ball.heading())
+
+    if ball.xcor() > screen_width or ball.xcor() < -screen_width:
+        ball.setheading(180-ball.heading())
+
+
 def move_forward():
-    ball.forward(10)
-    check_collision()
-    s.ontimer(move_forward, 50)
+    turtle.tracer(0, 0)
+    ball.forward(30)
+    check_border_collision()
+    turtle.tracer(1, 1)
+
+    s.ontimer(move_forward, 90)
 
 
-def check_collision():
-    distan = Dash.distance(ball)
-    if distan < 50:
-        ball.setheading(60)
-    turtle.ontimer(check_collision, 100)
+
+
 
 
 
 screen_width = turtle.window_width() // 2
 screen_height = turtle.window_height() // 2
 move_forward()
+
+
+
+
+# Border
+
+
+
+
+
 
 
 s.onkey(right_move,"d")
